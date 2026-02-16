@@ -9,24 +9,23 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<Money, decimal>().ConvertUsing(src => src.Amount);
+
         CreateMap<Order, OrderDto>()
-            .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.TotalAmount.Amount))
-            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
-            .ForMember(dest => dest.DeliveryAddress, opt => opt.MapFrom(src => src.DeliveryAddress))
-            .ForMember(dest => dest.Items, opt => opt.Ignore());
+            .ForCtorParam("TotalAmount", opt => opt.MapFrom(src => src.TotalAmount.Amount))
+            .ForCtorParam("Status", opt => opt.MapFrom(src => src.Status.ToString()));
 
         CreateMap<OrderItem, OrderItemDto>()
-            .ForMember(dest => dest.UnitPrice, opt => opt.MapFrom(src => src.UnitPrice.Amount))
-            .ForMember(dest => dest.Subtotal, opt => opt.MapFrom(src => src.Subtotal.Amount))
-            .ForMember(dest => dest.PizzaName, opt => opt.Ignore());
+            .ForCtorParam("UnitPrice", opt => opt.MapFrom(src => src.UnitPrice.Amount))
+            .ForCtorParam("Subtotal", opt => opt.MapFrom(src => src.Subtotal.Amount))
+            .ForCtorParam("PizzaName", opt => opt.MapFrom(src => string.Empty));
 
         CreateMap<Pizza, PizzaDto>()
-            .ForMember(dest => dest.BasePrice, opt => opt.MapFrom(src => src.BasePrice.Amount))
-            .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.Size.ToString()));
+            .ForCtorParam("BasePrice", opt => opt.MapFrom(src => src.BasePrice.Amount))
+            .ForCtorParam("Size", opt => opt.MapFrom(src => src.Size.ToString()));
 
         CreateMap<Customer, CustomerDto>()
-            .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName))
-            .ForMember(dest => dest.DefaultAddress, opt => opt.MapFrom(src => src.DefaultAddress));
+            .ForCtorParam("FullName", opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
 
         CreateMap<Address, AddressDto>()
             .ReverseMap()
