@@ -21,46 +21,46 @@ public static class DataSeeder
         {
             new()
             {
-                FirstName = "John",
-                LastName = "Doe",
-                Email = "john.doe@example.com",
-                PhoneNumber = "+1-555-0101",
+                FirstName = "Juan",
+                LastName = "Pérez",
+                Email = "juan.perez@example.com",
+                PhoneNumber = "+34-555-0101",
                 DefaultAddress = Address.Create(
-                    "123 Main Street",
-                    "New York",
-                    "NY",
-                    "10001",
-                    "USA"
+                    "Calle Mayor 123",
+                    "Madrid",
+                    "Madrid",
+                    "28001",
+                    "España"
                 ),
                 IsActive = true
             },
             new()
             {
-                FirstName = "Jane",
-                LastName = "Smith",
-                Email = "jane.smith@example.com",
-                PhoneNumber = "+1-555-0102",
+                FirstName = "María",
+                LastName = "González",
+                Email = "maria.gonzalez@example.com",
+                PhoneNumber = "+34-555-0102",
                 DefaultAddress = Address.Create(
-                    "456 Oak Avenue",
-                    "Los Angeles",
-                    "CA",
-                    "90001",
-                    "USA"
+                    "Avenida Diagonal 456",
+                    "Barcelona",
+                    "Barcelona",
+                    "08001",
+                    "España"
                 ),
                 IsActive = true
             },
             new()
             {
-                FirstName = "Michael",
-                LastName = "Johnson",
-                Email = "michael.johnson@example.com",
-                PhoneNumber = "+1-555-0103",
+                FirstName = "Carlos",
+                LastName = "López",
+                Email = "carlos.lopez@example.com",
+                PhoneNumber = "+34-555-0103",
                 DefaultAddress = Address.Create(
-                    "789 Pine Road",
-                    "Chicago",
-                    "IL",
-                    "60601",
-                    "USA"
+                    "Gran Vía 789",
+                    "Valencia",
+                    "Valencia",
+                    "46001",
+                    "España"
                 ),
                 IsActive = true
             }
@@ -125,18 +125,18 @@ public static class DataSeeder
         {
             new()
             {
-                FirstName = "Carlos",
-                LastName = "Rodriguez",
-                PhoneNumber = "+1-555-0201",
+                FirstName = "Pedro",
+                LastName = "Martínez",
+                PhoneNumber = "+34-555-0201",
                 VehiclePlate = "ABC-1234",
                 IsAvailable = true,
                 IsActive = true
             },
             new()
             {
-                FirstName = "Maria",
-                LastName = "Garcia",
-                PhoneNumber = "+1-555-0202",
+                FirstName = "Ana",
+                LastName = "Rodríguez",
+                PhoneNumber = "+34-555-0202",
                 VehiclePlate = "XYZ-5678",
                 IsAvailable = true,
                 IsActive = true

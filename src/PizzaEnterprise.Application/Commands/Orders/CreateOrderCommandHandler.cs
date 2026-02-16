@@ -58,11 +58,20 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
             request.DeliveryAddress.Country
         );
 
-        var orderItems = request.Items.Select(item => new OrderItem
+        var orderItems = request.Items.Select(item =>
         {
-            PizzaId = item.PizzaId,
-            Quantity = item.Quantity,
-            UnitPrice = pizzaDict[item.PizzaId].BasePrice
+            // This is safe because we validated all pizzas exist above
+            if (!pizzaDict.TryGetValue(item.PizzaId, out var pizza))
+            {
+                throw new InvalidOperationException($"Pizza {item.PizzaId} not found after validation.");
+            }
+            
+            return new OrderItem
+            {
+                PizzaId = item.PizzaId,
+                Quantity = item.Quantity,
+                UnitPrice = pizza.BasePrice
+            };
         }).ToList();
 
         var order = Order.Create(customer, deliveryAddress, orderItems);

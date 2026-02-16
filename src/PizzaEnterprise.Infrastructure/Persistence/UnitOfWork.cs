@@ -26,11 +26,20 @@ public class UnitOfWork : IUnitOfWork, IDisposable, IAsyncDisposable
 
     public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
     {
-        if (_transaction != null)
+        try
         {
-            await _transaction.CommitAsync(cancellationToken);
-            await _transaction.DisposeAsync();
-            _transaction = null;
+            if (_transaction != null)
+            {
+                await _transaction.CommitAsync(cancellationToken);
+            }
+        }
+        finally
+        {
+            if (_transaction != null)
+            {
+                await _transaction.DisposeAsync();
+                _transaction = null;
+            }
         }
     }
 
